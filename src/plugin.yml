@@ -1,0 +1,31 @@
+name: SimpleKit
+version: 0.1
+api-version: 1.16
+main: ru.seriouscompany.simplekit.SimpleKit
+author: Vadimka
+depend: [ SCEssentials ]
+commands:
+  kit:
+    description: Команда наборов
+    usage: /kit
+permissions:
+  simplekit.*:
+    description: Управление наборами
+    default: op
+    children:
+      simplekit.list: true
+      simplekit.give: true
+      simplekit.del: true
+      simplekit.set: true
+  simplekit.give:
+    description: Позволяет выдавать наборы
+    default: op
+  simplekit.list:
+    description: Позволяет просматривать доступные наборы
+    default: op
+  simplekit.del:
+    description: Позволяет удалять наборы
+    default: op
+  simplekit.set:
+    description: Позволяет создавать наборы
+    default: op
