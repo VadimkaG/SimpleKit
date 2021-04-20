@@ -1,5 +1,5 @@
 name: SimpleKit
-version: 0.1
+version: 1.0
 api-version: 1.16
 main: ru.seriouscompany.simplekit.SimpleKit
 author: Vadimka
@@ -17,6 +17,8 @@ permissions:
       simplekit.give: true
       simplekit.del: true
       simplekit.set: true
+      simplekit.query.check: true
+      simplekit.query.del: true
   simplekit.give:
     description: Позволяет выдавать наборы
     default: op
@@ -28,4 +30,10 @@ permissions:
     default: op
   simplekit.set:
     description: Позволяет создавать наборы
+    default: op
+  simplekit.query.check:
+    description: Позволяет просмотреть очереди наборов игрока
+    default: op
+  simplekit.query.del:
+    description: Позволяет удалять очереди наборов игрока
     default: op

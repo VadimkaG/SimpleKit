@@ -1,14 +1,14 @@
 package ru.seriouscompany.simplekit.commands;
 
+import java.util.Set;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import ru.seriouscompany.simplekit.Kit;
 import ru.seriouscompany.simplekit.Locale;
-
-import java.util.List;
-import java.util.Set;
 
 public class CKitList  implements CommandExecutor {
 
