@@ -64,6 +64,10 @@ public class Kit {
             SimpleKit.getInstance().getLogger().log(Level.WARNING, "Ошибка сохранения kits.yml.");
         }
     }
+    
+    public static boolean has(String name) {
+    	return Config.KIT_CONFIG.contains(name);
+    }
 
     public static Kit load(String name) {
         ItemStack item = Config.KIT_CONFIG.getItemStack(name);
