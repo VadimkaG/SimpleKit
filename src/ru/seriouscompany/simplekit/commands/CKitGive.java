@@ -18,19 +18,21 @@ public class CKitGive implements CommandExecutor {
 		if (args.length < 1)
 			return false;
 		
-		String player_name = "";
+		if (args.length < 2 && !(sender instanceof Player))
+			return false;
+		
+		
+		if (!sender.isPermissionSet("simplekit.kit.give")) {
+			sender.sendMessage(Locale.PERMISSION_DENIED);
+			return true;
+		}
 
-		if (sender instanceof Player) {
-			Player player = (Player) sender;
-			if (!player.isPermissionSet("simplekit.kit.give")) {
-				sender.sendMessage(Locale.PERMISSION_DENIED);
-				return true;
-			}
-			if (args.length < 2)
-				player_name = player.getName();
-		} else if (args.length < 2) return false;
-
-		if (args.length > 1)
+		String player_name = sender.getName();
+		
+		if (args.length > 1 && !sender.isPermissionSet("simplekit.kit.give.others")) {
+			sender.sendMessage(Locale.PERMISSION_DENIED);
+			return true;
+		} else if (args.length > 1)
 			player_name = args[1];
 
 		int count = 1;
