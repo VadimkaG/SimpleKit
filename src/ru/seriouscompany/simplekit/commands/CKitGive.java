@@ -36,6 +36,10 @@ public class CKitGive implements CommandExecutor {
 		int count = 1;
 		if (args.length == 3)
 			count = Integer.parseInt(args[2]);
+		
+		// Заглушка, чтобы сервер не упал
+		if (count > 1000)
+			count = 1000;
 
 		Kit kit = Kit.load(args[0]);
 		if (kit == null) {
