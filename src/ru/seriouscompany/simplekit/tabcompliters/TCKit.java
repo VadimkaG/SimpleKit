@@ -31,18 +31,23 @@ public class TCKit implements TabCompleter {
 				tryadd(args, data, CKit.PREFIX_COMMAND_GIVE);
 			if (!(sender instanceof Player) ||  ((Player)sender).isPermissionSet("simplekit.kit.list"))
 				tryadd(args, data, CKit.PREFIX_COMMAND_LIST);
-			if (!(sender instanceof Player) ||  ((Player)sender).isPermissionSet("simplekit.kit.set"))
+			if (!(sender instanceof Player) ||  ((Player)sender).isPermissionSet("simplekit.kit.set")) {
 				tryadd(args, data, CKit.PREFIX_COMMAND_SET);
+				tryadd(args, data, CKit.PREFIX_COMMAND_SET_PRICE);
+			}
 			tryadd(args, data, CKit.PREFIX_COMMAND_TAKE);
 			if (!(sender instanceof Player) ||  ((Player)sender).isPermissionSet("simplekit.query.check"))
 				tryadd(args, data, CKit.PREFIX_COMMAND_QUEUE_CHECK);
 			if (!(sender instanceof Player) ||  ((Player)sender).isPermissionSet("simplekit.query.del"))
 				tryadd(args, data, CKit.PREFIX_COMMAND_QUEUE_DELETE);
+			tryadd(args, data, CKit.PREFIX_COMMAND_BUY);
 		} else if (args.length > 1) {
 			String[] newArgs;
 			if (args.length > 1) newArgs = Arrays.copyOfRange(args, 1, args.length);
 			else newArgs = new String[0];
 			switch (args[0].trim()) {
+			case CKit.PREFIX_COMMAND_BUY:
+			case CKit.PREFIX_COMMAND_SET_PRICE:
 			case CKit.PREFIX_COMMAND_SET:
 			case CKit.PREFIX_COMMAND_DELETE:
 				return completerName.onTabComplete(sender, cmd, label, newArgs);
