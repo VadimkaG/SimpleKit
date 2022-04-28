@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import ru.seriouscompany.simplekit.SimpleKit;
+
 public class CKit implements CommandExecutor {
     public static final String PREFIX_COMMAND_SET    = "set";
     public static final String PREFIX_COMMAND_LIST   = "list";
@@ -101,6 +103,7 @@ public class CKit implements CommandExecutor {
             sender.sendMessage("/"+label+" "+PREFIX_COMMAND_QUEUE_CHECK+" <игрок> - Посмотреть очереди на игрока");
         if (!(sender instanceof Player) ||  ((Player)sender).isPermissionSet("simplekit.query.del"))
             sender.sendMessage("/"+label+" "+PREFIX_COMMAND_QUEUE_DELETE+" <id> - Удалить набор из очереди");
-        sender.sendMessage("/"+label+" "+PREFIX_COMMAND_BUY+" <название> - Купить предмет");
+        if (SimpleKit.moneyController().inPointWarsFinded())
+        	sender.sendMessage("/"+label+" "+PREFIX_COMMAND_BUY+" <название> - Купить предмет");
     }
 }

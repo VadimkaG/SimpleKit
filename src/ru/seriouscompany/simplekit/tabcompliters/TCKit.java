@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import ru.seriouscompany.simplekit.SimpleKit;
 import ru.seriouscompany.simplekit.commands.CKit;
 
 public class TCKit implements TabCompleter {
@@ -40,7 +41,8 @@ public class TCKit implements TabCompleter {
 				tryadd(args, data, CKit.PREFIX_COMMAND_QUEUE_CHECK);
 			if (!(sender instanceof Player) ||  ((Player)sender).isPermissionSet("simplekit.query.del"))
 				tryadd(args, data, CKit.PREFIX_COMMAND_QUEUE_DELETE);
-			tryadd(args, data, CKit.PREFIX_COMMAND_BUY);
+			if (SimpleKit.moneyController().inPointWarsFinded())
+				tryadd(args, data, CKit.PREFIX_COMMAND_BUY);
 		} else if (args.length > 1) {
 			String[] newArgs;
 			if (args.length > 1) newArgs = Arrays.copyOfRange(args, 1, args.length);

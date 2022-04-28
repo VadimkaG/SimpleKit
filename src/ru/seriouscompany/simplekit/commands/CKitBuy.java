@@ -6,9 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import ru.seriouscompany.essentials.Config;
-import ru.seriouscompany.pointwar.Clan;
-import ru.seriouscompany.pointwar.PlayerStats;
 import ru.seriouscompany.simplekit.Kit;
+import ru.seriouscompany.simplekit.SimpleKit;
 
 public class CKitBuy implements CommandExecutor {
 
@@ -39,36 +38,11 @@ public class CKitBuy implements CommandExecutor {
 
         try {
         
-	        PlayerStats playerStats = PlayerStats.loadByPlayerName(((Player)sender).getName());
-	        
-	        if (playerStats.getClanId() < 1) {
-	        	sender.sendMessage("Вы не состоите в клане");
-	        	return true;
-	        }
-	        
-	        if (playerStats.getClanPerm() != PlayerStats.CLAN_PERM_ALL) {
-	        	sender.sendMessage("Вы не лидер!");
-	        	return true;
-	        }
-        
-	        Clan clan = Clan.load(playerStats.getClanId());
-	
-	        if (clan == null) {
-	        	sender.sendMessage("Клан не найден");
-	        	return true;
-	        }
-	        
-	        if (clan.getMoney() < kit.getPrice()) {
-	        	sender.sendMessage("У вас недостаточно денег. Для покупки необходимо "+String.valueOf(kit.getPrice())+" монет.");
-	        	return true;
-	        }
-	        
-	        clan.addMoney(0-kit.getPrice());
-	        clan.save();
+        	SimpleKit.moneyController().takeMoney((Player)sender, kit.getPrice());
 	
 	    	kit.give((Player)sender, 1);
-        } catch (NoClassDefFoundError ex) {
-        	sender.sendMessage("Не найден плагин PointWars. Покупка не возможна.");
+        } catch (Exception ex) {
+        	sender.sendMessage(ex.getMessage());
         }
         
 		return true;
